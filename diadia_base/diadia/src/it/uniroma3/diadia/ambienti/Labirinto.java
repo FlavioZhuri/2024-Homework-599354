@@ -14,6 +14,8 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * @see Stanza 
  */
 public class Labirinto {
+	
+	
 
 	private Stanza atrio = new Stanza("Atrio");
 	private Stanza aulaN11 = new Stanza("Aula N11");
@@ -51,49 +53,6 @@ public class Labirinto {
 
 	}
 
-	
-	// getter e setter automatici da Eclipse
-
-	public Stanza getAtrio() {
-		return atrio;
-	}
-
-	public void setAtrio(Stanza atrio) {
-		this.atrio = atrio;
-	}
-
-	public Stanza getAulaN11() {
-		return aulaN11;
-	}
-
-	public void setAulaN11(Stanza aulaN11) {
-		this.aulaN11 = aulaN11;
-	}
-
-	public Stanza getAulaN10() {
-		return aulaN10;
-	}
-
-	public void setAulaN10(Stanza aulaN10) {
-		this.aulaN10 = aulaN10;
-	}
-
-	public Stanza getLaboratorio() {
-		return laboratorio;
-	}
-
-	public void setLaboratorio(Stanza laboratorio) {
-		this.laboratorio = laboratorio;
-	}
-
-	public Stanza getBiblioteca() {
-		return biblioteca;
-	}
-
-	public void setBiblioteca(Stanza biblioteca) {
-		this.biblioteca = biblioteca;
-	}
-
 	public Stanza getStanzaIniziale() {
 		return stanzaIniziale;
 	}
@@ -105,9 +64,6 @@ public class Labirinto {
 	public Stanza getStanzaFinale() {
 		return stanzaFinale;
 	}
-
-	public void setStanzaFinale(Stanza stanzaFinale) {
-		this.stanzaFinale = stanzaFinale;
-	}
-
+	
+	
 }

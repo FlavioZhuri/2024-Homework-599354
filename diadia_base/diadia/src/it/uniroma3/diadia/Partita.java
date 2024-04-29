@@ -21,7 +21,7 @@ public class Partita {
 
 	public Partita(){
 		lab = new Labirinto();
-		stanzaCorrente = lab.getAtrio();
+		stanzaCorrente = lab.getStanzaIniziale();
 		this.finita = false;
 		this.player = new Giocatore();
 	}
