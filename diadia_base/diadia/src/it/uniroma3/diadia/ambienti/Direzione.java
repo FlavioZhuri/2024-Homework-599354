@@ -1,5 +1,8 @@
 package it.uniroma3.diadia.ambienti;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public enum Direzione {
 	NORD, OVEST, SUD, EST, SUDOVEST, NORDEST, SUDEST, NORDOVEST;
 	
@@ -23,9 +26,22 @@ public enum Direzione {
 		if(s.equalsIgnoreCase("SUDEST"))return Direzione.SUDEST;
 		if(s.equalsIgnoreCase("NORDOVEST"))return Direzione.NORDOVEST;
 		
-		return null;	
+		return null;
 		
 	}
+
+    public static Set<Direzione> getAllDirezioni() {
+        Set<Direzione> result = new HashSet<>();
+		result.add(NORD);
+		result.add(OVEST);
+		result.add(SUD);
+		result.add(EST);
+		result.add(SUDOVEST);
+		result.add(NORDEST);
+		result.add(SUDEST);
+		result.add(NORDOVEST);
+		return result;
+    }
 	
 	
 
