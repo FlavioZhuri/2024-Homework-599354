@@ -248,9 +248,8 @@ public class DiaDia {
 
 
 	public static void main(String[] argc) {
-		IO console = new IOConsole();
+		IO console = IOConsole.getInstance();
 		DiaDia gioco = new DiaDia(console);
-
 
 		gioco.gioca();
 	}

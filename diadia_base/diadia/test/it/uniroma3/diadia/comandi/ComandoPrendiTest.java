@@ -27,7 +27,7 @@ public class ComandoPrendiTest {
 		attrezzo = new Attrezzo("martello", 2);
 		attrezzoPesante = new Attrezzo("incudine", 11);
 		comando = new ComandoPrendi();
-		io = new IOConsole();
+		io = IOConsole.getInstance();
 		comando.setIO(io);
 	}
 

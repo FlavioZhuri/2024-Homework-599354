@@ -24,7 +24,7 @@ public class ComandoVaiTest {
 		s2 = new Stanza("aula 2");
 		vai = new ComandoVai();
 		p = new Partita();
-		vai.setIO(new IOConsole());
+		vai.setIO(IOConsole.getInstance());
 	}
 
 	@After

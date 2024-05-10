@@ -24,7 +24,7 @@ public class ComandoPosaTest {
 		partita = new Partita();
 		attrezzo = new Attrezzo("martello", 2);
 		comando = new ComandoPosa();
-		io = new IOConsole();
+		io = IOConsole.getInstance();
 		comando.setIO(io);
 	}
 

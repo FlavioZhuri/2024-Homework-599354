@@ -4,13 +4,15 @@ import java.util.Scanner;
 
 import it.uniroma3.diadia.IO;
 
-public class FabbricaDiComandiFisarmonica {
+public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi{
 
 	private IO io;
+	
 	public FabbricaDiComandiFisarmonica(IO io) {
 		this.io = io;
 	}
 	
+	@Override
 	public Comando costruisciComando(String istruzione) {
 		Scanner scannerDiParole = new Scanner(istruzione);
 		String nomeComando = null;
