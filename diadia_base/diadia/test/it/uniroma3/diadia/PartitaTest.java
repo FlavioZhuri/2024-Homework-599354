@@ -3,6 +3,8 @@ package it.uniroma3.diadia;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import org.junit.Test;
+
+import it.uniroma3.diadia.ambienti.Direzione;
 import it.uniroma3.diadia.ambienti.Stanza;
 
 public class PartitaTest {
@@ -30,8 +32,8 @@ public class PartitaTest {
 	
 	@Test
 	public void testImpostaStanzaAdiacente() {
-		stanza1.impostaStanzaAdiacente("sud", stanza2);
-		assertEquals(stanza2, stanza1.getStanzaAdiacente("sud"));
+		stanza1.impostaStanzaAdiacente(Direzione.SUD, stanza2);
+		assertEquals(stanza2, stanza1.getStanzaAdiacente(Direzione.SUD));
 	}
 	
 }

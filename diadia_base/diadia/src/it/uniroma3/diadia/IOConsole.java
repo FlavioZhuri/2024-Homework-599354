@@ -19,7 +19,7 @@ public class IOConsole implements IO{
 	public String leggiRiga() {
 		String riga = null;
 		if(scannerDiLinee.hasNextLine()) {
-		 riga = scannerDiLinee.nextLine();
+			riga = scannerDiLinee.nextLine();
 		}	
 		return riga;
 	}

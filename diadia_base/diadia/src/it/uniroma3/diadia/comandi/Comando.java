@@ -50,9 +50,9 @@ public interface Comando {
 */
 	public void esegui(Partita partita);
 	
-	void setParametro(String parametro);
+	public void setParametro(String parametro);
 	
-	String getParametro();
+	public String getParametro();
 	
 	public void setIO(IO io);
 	

@@ -27,18 +27,18 @@ public class Labirinto {
 	private Stanza stanzaFinale;
 
 	public Labirinto(){
-		atrio.impostaStanzaAdiacente("nord", biblioteca);
-		atrio.impostaStanzaAdiacente("est", aulaN11);
-		atrio.impostaStanzaAdiacente("sud", aulaN10);
-		atrio.impostaStanzaAdiacente("ovest", laboratorio);
-		aulaN11.impostaStanzaAdiacente("est", laboratorio);
-		aulaN11.impostaStanzaAdiacente("ovest", atrio);
-		aulaN10.impostaStanzaAdiacente("nord", atrio);
-		aulaN10.impostaStanzaAdiacente("est", aulaN11);
-		aulaN10.impostaStanzaAdiacente("ovest", laboratorio);
-		laboratorio.impostaStanzaAdiacente("est", atrio);
-		laboratorio.impostaStanzaAdiacente("ovest", aulaN11);
-		biblioteca.impostaStanzaAdiacente("sud", atrio);
+		atrio.impostaStanzaAdiacente(Direzione.NORD, biblioteca);
+		atrio.impostaStanzaAdiacente(Direzione.EST, aulaN11);
+		atrio.impostaStanzaAdiacente(Direzione.SUD, aulaN10);
+		atrio.impostaStanzaAdiacente(Direzione.OVEST, laboratorio);
+		aulaN11.impostaStanzaAdiacente(Direzione.EST, laboratorio);
+		aulaN11.impostaStanzaAdiacente(Direzione.OVEST, atrio);
+		aulaN10.impostaStanzaAdiacente(Direzione.NORD, atrio);
+		aulaN10.impostaStanzaAdiacente(Direzione.EST, aulaN11);
+		aulaN10.impostaStanzaAdiacente(Direzione.OVEST, laboratorio);
+		laboratorio.impostaStanzaAdiacente(Direzione.EST, atrio);
+		laboratorio.impostaStanzaAdiacente(Direzione.OVEST, aulaN11);
+		biblioteca.impostaStanzaAdiacente(Direzione.SUD, atrio);
 
 		stanzaIniziale = aulaN11;
 		stanzaFinale = biblioteca;	

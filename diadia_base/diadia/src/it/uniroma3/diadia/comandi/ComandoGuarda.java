@@ -21,7 +21,6 @@ public class ComandoGuarda implements Comando {
 	@Override
 	public void setParametro(String parametro) {
 		// Vuoto 
-
 	}
 
 	@Override

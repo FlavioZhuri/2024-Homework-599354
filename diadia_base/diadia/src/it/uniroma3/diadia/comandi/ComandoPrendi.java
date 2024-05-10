@@ -18,7 +18,6 @@ public class ComandoPrendi implements Comando {
 		Attrezzo a = partita.getStanzaCorrente().getAttrezzo(nomeAttrezzo);
 		
 		if( a == null) {
-			io.mostraMessaggio("L'attrezzo non è presnete nella Stanza");
 			return;
 		}
 		

@@ -2,6 +2,7 @@ package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Direzione;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.giocatore.Giocatore;
 
@@ -17,11 +18,10 @@ public class ComandoVai implements Comando{
 	public void esegui(Partita partita) {
 		Stanza stanzaCorrente = partita.getStanzaCorrente();
 		Stanza prossimaStanza = null;
-		if (this.direzione == null) {
+		
 			this.io.mostraMessaggio("Dove vuoi andare?");
-		}
 
-		prossimaStanza = stanzaCorrente.getStanzaAdiacente(this.direzione);
+		prossimaStanza = stanzaCorrente.getStanzaAdiacente(Direzione.fromString(direzione));
 		if (prossimaStanza == null) {
 			this.io.mostraMessaggio("Direzione inesistente");
 			return;
@@ -52,5 +52,7 @@ public class ComandoVai implements Comando{
 	public String getNome() {
 		return NOME;
 	}
+	
+	
 
 }

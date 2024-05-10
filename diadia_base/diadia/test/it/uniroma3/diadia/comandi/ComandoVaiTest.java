@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Direzione;
 import it.uniroma3.diadia.ambienti.Stanza;
 
 public class ComandoVaiTest {
@@ -41,8 +42,8 @@ public class ComandoVaiTest {
 	@Test
 	public void testVaiDirezioneEsistente() {
 		p.setStanzaCorrente(s1);
-		s1.impostaStanzaAdiacente("sud-ovest", s2);
-		vai.setParametro("sud-ovest");
+		s1.impostaStanzaAdiacente(Direzione.SUDOVEST, s2);
+		vai.setParametro("SudOvest");
 		vai.esegui(p);
 		assertEquals(s2, p.getStanzaCorrente());
 	}
@@ -50,7 +51,7 @@ public class ComandoVaiTest {
 	@Test
 	public void testVaiDirezioneInesistente() {
 		p.setStanzaCorrente(s1);
-		s1.impostaStanzaAdiacente("sud-ovest", s2);
+		s1.impostaStanzaAdiacente(Direzione.SUDOVEST, s2);
 		vai.setParametro("in fondo a destra");
 		vai.esegui(p);
 		assertNotEquals(s2, p.getStanzaCorrente());
