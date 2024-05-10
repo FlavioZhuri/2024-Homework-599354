@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class IOConsole implements IO{
 
 	private static IOConsole instance;
+	private static Scanner scannerDiLinee = new Scanner(System.in);
 
 	private IOConsole(){}
 
@@ -16,9 +17,10 @@ public class IOConsole implements IO{
 		System.out.println(msg);
 	}
 	public String leggiRiga() {
-		Scanner scannerDiLinee = new Scanner(System.in);
-		String riga = scannerDiLinee.nextLine();
-		    scannerDiLinee.close();
+		String riga = null;
+		if(scannerDiLinee.hasNextLine()) {
+		 riga = scannerDiLinee.nextLine();
+		}	
 		return riga;
 	}
 }
