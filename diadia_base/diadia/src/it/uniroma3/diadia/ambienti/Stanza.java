@@ -1,5 +1,9 @@
 package it.uniroma3.diadia.ambienti;
+import java.util.HashSet;
+import java.util.Set;
+
 import it.uniroma3.diadia.IO;
+import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 /**
@@ -16,10 +20,9 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 public class Stanza {
 
 	static final private int NUMERO_MASSIMO_DIREZIONI = 4;
-	static final private int NUMERO_MASSIMO_ATTREZZI = 10;
 
 	private String nome;
-	private Attrezzo[] attrezzi;
+	private Set<Attrezzo> attrezzi;
 	private int numeroAttrezzi;
 	private Stanza[] stanzeAdiacenti;
 	private int numeroStanzeAdiacenti;
@@ -35,7 +38,7 @@ public class Stanza {
 		this.numeroAttrezzi = 0;
 		this.direzioni = new String[NUMERO_MASSIMO_DIREZIONI];
 		this.stanzeAdiacenti = new Stanza[NUMERO_MASSIMO_DIREZIONI];
-		this.attrezzi = new Attrezzo[NUMERO_MASSIMO_ATTREZZI];
+		this.attrezzi = new HashSet<>();
 	}
 
 	/**
@@ -91,7 +94,7 @@ public class Stanza {
 	 * Restituisce la collezione di attrezzi presenti nella stanza.
 	 * @return la collezione di attrezzi nella stanza.
 	 */
-	public Attrezzo[] getAttrezzi() {
+	public Set<Attrezzo> getAttrezzi() {
 		return this.attrezzi;
 	}
 
@@ -101,14 +104,7 @@ public class Stanza {
 	 * @return true se riesce ad aggiungere l'attrezzo, false atrimenti.
 	 */
 	public boolean addAttrezzo(Attrezzo attrezzo) {
-		if (this.numeroAttrezzi < NUMERO_MASSIMO_ATTREZZI) {
-			this.attrezzi[numeroAttrezzi] = attrezzo;
-			this.numeroAttrezzi++;
-			return true;
-		}
-		else {
-			return false;
-		}
+		return this.attrezzi.add(attrezzo);
 	}
 
 	/**
@@ -169,24 +165,16 @@ public class Stanza {
 	 * @param nomeAttrezzo
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
-	public boolean removeAttrezzo(Attrezzo attrezzo, IO console) {
+	public boolean removeAttrezzo(Attrezzo attrezzo) {
+		IO console = IOConsole.getInstance();
 
-		// l'idea è che trova prima l'attrezzo e se lo trova
-		// fa una for che scorre l'array di oggetti attrezzo
-		// e quando troverà lo stesso attrezzo lo rimuovera
-		// dall'array degli attrezzi nella stanza
-
-		if(this.hasAttrezzo(attrezzo.getNome())) {
-			for(int i=0; i<attrezzi.length;i++) {
-				if(attrezzi[i]!= null)
-					if(attrezzi[i].equals(attrezzo)) {
-						attrezzi[i] = null;
-						console.mostraMessaggio("L'attrezzo è stato rimosso dalla stanza");
-						return true;
-					}
-			}
-		}	
-		return false;
+		if(this.attrezzi.remove(attrezzo)) {
+			console.mostraMessaggio("L'attrezzo è stato rimosso dalla stanza");
+			return true;
+		}else {
+			console.mostraMessaggio("L'attrezzo Non è presente nella stanza");
+			return false;
+		}
 	}
 
 	public String[] getDirezioni() {
@@ -197,7 +185,7 @@ public class Stanza {
 	}
 
 	// getter e setter automatici da Eclipse
-	
+
 	public int getNumeroAttrezzi() {
 		return numeroAttrezzi;
 	}
@@ -226,7 +214,7 @@ public class Stanza {
 		this.nome = nome;
 	}
 
-	public void setAttrezzi(Attrezzo[] attrezzi) {
+	public void setAttrezzi(Set<Attrezzo> attrezzi) {
 		this.attrezzi = attrezzi;
 	}
 

@@ -3,6 +3,8 @@ package it.uniroma3.diadia.comandi;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Set;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +39,7 @@ public class ComandoPrendiTest {
 	}
 	
 	public boolean attrezzoPresente(String s) {
-		Attrezzo[] array = partita.getStanzaCorrente().getAttrezzi();
+		Set<Attrezzo> array = partita.getStanzaCorrente().getAttrezzi();
 		for(Attrezzo a : array) {
 			if(a != null && s.equals(a.getNome()))
 					return true;

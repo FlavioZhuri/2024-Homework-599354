@@ -31,11 +31,10 @@ public class DiaDia {
 	private Partita partita;
 	private IO io;
 
-	public DiaDia(IO console) {
-		this.io = console;
+	public DiaDia() {
+		this.io = IOConsole.getInstance();
 		this.partita = new Partita();
 	}
-
 
 	public void gioca() {
 		String istruzione; 
@@ -248,8 +247,7 @@ public class DiaDia {
 
 
 	public static void main(String[] argc) {
-		IO console = IOConsole.getInstance();
-		DiaDia gioco = new DiaDia(console);
+		DiaDia gioco = new DiaDia();
 
 		gioco.gioca();
 	}

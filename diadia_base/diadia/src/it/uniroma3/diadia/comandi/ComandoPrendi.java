@@ -1,12 +1,13 @@
 package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.IO;
+import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class ComandoPrendi implements Comando {
 
-	private IO io;
+	private IO io = IOConsole.getInstance();
 	private String nomeAttrezzo;
 	private final static String NOME = "prendi";
 
@@ -26,7 +27,7 @@ public class ComandoPrendi implements Comando {
 		
 		if(partita.getPlayer().getBag().getPeso() + a.getPeso() < partita.getPlayer().getBag().getPesoMax()) {
 			
-			partita.getStanzaCorrente().removeAttrezzo(a, io);
+			partita.getStanzaCorrente().removeAttrezzo(a);
 			partita.getPlayer().getBag().addAttrezzo(a);
 			
 			io.mostraMessaggio("L'attrezzo è stato inserito nella Borsa");
