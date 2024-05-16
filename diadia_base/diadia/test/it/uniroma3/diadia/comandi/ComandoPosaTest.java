@@ -60,7 +60,7 @@ public class ComandoPosaTest {
 		partita.getPlayer().getBag().addAttrezzo(attrezzo);
 		comando.setParametro("martello");
 		comando.esegui(partita);
-		assertFalse(partita.getStanzaCorrente().hasAttrezzo("martello"));
+		assertTrue(partita.getStanzaCorrente().hasAttrezzo("martello"));
 	}
-
+		// ho cambiato da False a True perchè ora non ho piu un limite di attrezzi ! 
 }

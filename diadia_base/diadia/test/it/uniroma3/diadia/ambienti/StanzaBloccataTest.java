@@ -69,7 +69,7 @@ public class StanzaBloccataTest {
 	
 	@Test
 	public void testGetDescrizioneDirezioneBloccata() {
-		String e = "Stanza bloccata nella direzione: ovest"+"\nPrendi il piedediporco e posalo nella stanza";
+		String e = "Stanza bloccata nella direzione: OVEST"+"\nPrendi il piedediporco e posalo nella stanza";
 		assertEquals(e, sb.getDescrizione());	
 	}
 
