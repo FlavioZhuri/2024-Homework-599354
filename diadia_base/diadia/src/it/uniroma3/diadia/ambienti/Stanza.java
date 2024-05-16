@@ -1,7 +1,7 @@
 package it.uniroma3.diadia.ambienti;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import it.uniroma3.diadia.IO;
@@ -22,7 +22,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 public class Stanza {
 
 	private String nome;
-	private Set<Attrezzo> attrezzi;
+	private Map<String, Attrezzo> attrezzi;
 	private int numeroAttrezzi;
 	private Map<Direzione, Stanza> stanzeAdiacenti;
 	private int numeroStanzeAdiacenti;
@@ -38,7 +38,7 @@ public class Stanza {
 		this.numeroAttrezzi = 0;
 		this.direzioni = Direzione.getAllDirezioni();
 		this.stanzeAdiacenti = new HashMap<>();
-		this.attrezzi = new HashSet<>();
+		this.attrezzi = new HashMap<>();
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class Stanza {
 		if(this.direzioni.contains(direzione))
 			this.stanzeAdiacenti.put(direzione, stanza);	
 	}
-	
+
 	/**
 	 * Restituisce la stanza adiacente nella direzione specificata
 	 * @param direzione
@@ -80,7 +80,7 @@ public class Stanza {
 	 * Restituisce la collezione di attrezzi presenti nella stanza.
 	 * @return la collezione di attrezzi nella stanza.
 	 */
-	public Set<Attrezzo> getAttrezzi() {
+	public Map<String, Attrezzo> getAttrezzi() {
 		return this.attrezzi;
 	}
 
@@ -90,7 +90,11 @@ public class Stanza {
 	 * @return true se riesce ad aggiungere l'attrezzo, false atrimenti.
 	 */
 	public boolean addAttrezzo(Attrezzo attrezzo) {
-		return this.attrezzi.add(attrezzo);
+		if(attrezzo != null) {
+			this.attrezzi.put(attrezzo.getNome(), attrezzo);
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -102,14 +106,18 @@ public class Stanza {
 		StringBuilder risultato = new StringBuilder();
 		risultato.append(this.nome);
 		risultato.append("\nUscite: ");
+		
 		for (Direzione direzione : this.stanzeAdiacenti.keySet())
 			if (direzione!=null)
 				risultato.append(" " + direzione);
+		
+		// non so come fare per fare in modo che vengano stampate solo le stanze che 
+		// sono adiacenti, se facessi un risultato.append(this.getDirezioni()) 
+		// mi stamperebbe TUTTE le direzioni e non quelle in cui effettivamente c'è 
+		// una stanza
+		
 		risultato.append("\nAttrezzi nella stanza: ");
-		for (Attrezzo attrezzo : this.attrezzi) {
-			if(attrezzo!=null)
-				risultato.append(attrezzo.toString()+" ");
-		}
+		risultato.append(this.getAttrezzi().toString());
 		return risultato.toString();
 	}
 
@@ -118,14 +126,7 @@ public class Stanza {
 	 * @return true se l'attrezzo esiste nella stanza, false altrimenti.
 	 */
 	public boolean hasAttrezzo(String nomeAttrezzo) {
-		boolean trovato;
-		trovato = false;
-		for (Attrezzo attrezzo : this.attrezzi) {
-			if(attrezzo!=null) // ho inserito questo controllo per evitare Null Pointer Exception
-				if (attrezzo.getNome().equals(nomeAttrezzo))
-					trovato = true;
-		}
-		return trovato;
+		return this.attrezzi.containsKey(nomeAttrezzo);
 	}
 
 	/**
@@ -135,14 +136,12 @@ public class Stanza {
 	 * 		   null se l'attrezzo non e' presente.
 	 */
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
-		Attrezzo attrezzoCercato;
-		attrezzoCercato = null;
-		for (Attrezzo attrezzo : this.attrezzi) {
-			if(attrezzo != null ){	
-				if (attrezzo.getNome().equals(nomeAttrezzo))
-					attrezzoCercato = attrezzo;
-			}
+		Attrezzo attrezzoCercato = null;
+
+		if(this.attrezzi.containsKey(nomeAttrezzo)) {
+			attrezzoCercato = this.attrezzi.get(nomeAttrezzo);
 		}
+
 		return attrezzoCercato;	
 	}
 
@@ -153,14 +152,16 @@ public class Stanza {
 	 */
 	public boolean removeAttrezzo(Attrezzo attrezzo) {
 		IO console = IOConsole.getInstance();
-
-		if(this.attrezzi.remove(attrezzo)) {
+		
+		if(attrezzo == null)return false;
+		
+		if(this.attrezzi.remove(attrezzo.getNome(), attrezzo)) {
 			console.mostraMessaggio("L'attrezzo è stato rimosso dalla stanza");
 			return true;
 		}else {
 			console.mostraMessaggio("L'attrezzo Non è presente nella stanza");
 			return false;
-		}
+		}		
 	}
 
 	public Set<Direzione> getDirezioni() {
@@ -197,14 +198,30 @@ public class Stanza {
 		this.nome = nome;
 	}
 
-	public void setAttrezzi(Set<Attrezzo> attrezzi) {
+	public void setAttrezzi(Map<String, Attrezzo> attrezzi) {
 		this.attrezzi = attrezzi;
 	}
 
 	public void setDirezioni(Set<Direzione> direzioni) {
 		this.direzioni = direzioni;
 	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(nome);
+	}
 
-
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Stanza that = (Stanza) obj;
+		return this.getNome().equals(that.getNome());
+	}
 
 }

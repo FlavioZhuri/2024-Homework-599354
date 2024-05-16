@@ -3,7 +3,7 @@ package it.uniroma3.diadia.comandi;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Set;
+import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
@@ -22,7 +22,7 @@ public class ComandoPrendiTest {
 	private Attrezzo attrezzoPesante;
 	private Comando comando;
 	private IO io;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		partita = new Partita();
@@ -37,16 +37,18 @@ public class ComandoPrendiTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+
 	public boolean attrezzoPresente(String s) {
-		Set<Attrezzo> array = partita.getStanzaCorrente().getAttrezzi();
-		for(Attrezzo a : array) {
-			if(a != null && s.equals(a.getNome()))
-					return true;
-		}
+		Map<String, Attrezzo> array = partita.getStanzaCorrente().getAttrezzi();
+
+		if(s != null ) {
+			if(array.containsKey(s)) {
+				return true;
+			}
+		}	
 		return false;
 	}
-	
+
 	@Test
 	public void testAttrezzoPreso() {
 		partita.getStanzaCorrente().addAttrezzo(attrezzo);
@@ -60,7 +62,7 @@ public class ComandoPrendiTest {
 		comando.esegui(partita);
 		assertFalse(attrezzoPresente("martello"));
 	}
-	
+
 	@Test
 	public void testAttrezzoPesante() {
 		partita.getStanzaCorrente().addAttrezzo(attrezzoPesante);
@@ -68,5 +70,5 @@ public class ComandoPrendiTest {
 		comando.esegui(partita);
 		assertTrue(attrezzoPresente("incudine"));
 	}
-	
+
 }
