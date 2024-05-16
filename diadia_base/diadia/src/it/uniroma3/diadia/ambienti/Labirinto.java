@@ -16,16 +16,16 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 public class Labirinto {
 	
 	
-
+/*
 	private Stanza atrio = new Stanza("Atrio");
 	private Stanza aulaN11 = new Stanza("Aula N11");
 	private Stanza aulaN10 = new Stanza("Aula N10");
 	private Stanza laboratorio = new Stanza("Laboratorio Campus");
 	private Stanza biblioteca = new Stanza("Biblioteca");
-
-	private Stanza stanzaIniziale;
+*/
+	private Stanza stanzaCorrente;
 	private Stanza stanzaFinale;
-
+/*
 	public Labirinto(){
 		atrio.impostaStanzaAdiacente(Direzione.NORD, biblioteca);
 		atrio.impostaStanzaAdiacente(Direzione.EST, aulaN11);
@@ -43,27 +43,39 @@ public class Labirinto {
 		stanzaIniziale = aulaN11;
 		stanzaFinale = biblioteca;	
 
-		/* crea gli attrezzi */
+		// crea gli attrezzi 
 		Attrezzo lanterna = new Attrezzo("lanterna",3);
 		Attrezzo osso = new Attrezzo("osso",1);
 
-		/* pone gli attrezzi nelle stanze */
+		// pone gli attrezzi nelle stanze 
 		aulaN10.addAttrezzo(lanterna);
 		atrio.addAttrezzo(osso);
 
 	}
-
-	public Stanza getStanzaIniziale() {
-		return stanzaIniziale;
-	}
-
-	public void setStanzaIniziale(Stanza stanzaIniziale) {
-		this.stanzaIniziale = stanzaIniziale;
-	}
+	
+	*/
 
 	public Stanza getStanzaFinale() {
 		return stanzaFinale;
 	}
+	
+	public void setStanzaFinale(Stanza stanzaFinale) {
+		this.stanzaFinale = stanzaFinale;
+	}
+	
+	public void setStanzaCorrente(Stanza stanzaCorrente) {
+		this.stanzaCorrente = stanzaCorrente;
+	}
+	
+	public static LabirintoBuilder newBuilder() {
+		return new LabirintoBuilder();
+	}
+
+	public Stanza getStanzaCorrente() {
+		return this.stanzaCorrente;
+	}
+	
+	
 	
 	
 }

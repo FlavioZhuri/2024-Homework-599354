@@ -58,6 +58,4 @@ public interface Comando {
 	
 	public String getNome();
 	
-	
-	
 }

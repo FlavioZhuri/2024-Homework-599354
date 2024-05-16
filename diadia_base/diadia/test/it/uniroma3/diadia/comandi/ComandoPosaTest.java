@@ -10,6 +10,9 @@ import org.junit.Test;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Direzione;
+import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class ComandoPosaTest {
@@ -18,10 +21,17 @@ public class ComandoPosaTest {
 	private Attrezzo attrezzo;
 	private IO io;
 	private Comando comando;
+	Labirinto labirinto;
 
 	@Before
 	public void setUp() throws Exception {
-		partita = new Partita();
+		labirinto = new LabirintoBuilder()
+				.addStanzaIniziale("Atrio")
+				.addAttrezzo("seghetto", 3)
+				.addStanzaVincente("Biblioteca")
+				.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
+				.getLabirinto();
+		partita = new Partita(labirinto);
 		attrezzo = new Attrezzo("martello", 2);
 		comando = new ComandoPosa();
 		io = IOConsole.getInstance();
@@ -61,6 +71,8 @@ public class ComandoPosaTest {
 		comando.setParametro("martello");
 		comando.esegui(partita);
 		assertTrue(partita.getStanzaCorrente().hasAttrezzo("martello"));
+		
+		// ho messo true perchè non c'è piu un limite 
 	}
-		// ho cambiato da False a True perchè ora non ho piu un limite di attrezzi ! 
+
 }

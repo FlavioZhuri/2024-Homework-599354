@@ -73,6 +73,7 @@ public class Borsa {
 
 		if(nomeAttrezzo != null) {
 			a = this.attrezzi.remove(nomeAttrezzo);
+			this.pesoAttuale = this.pesoAttuale-a.getPeso();
 		}
 
 		return a;
