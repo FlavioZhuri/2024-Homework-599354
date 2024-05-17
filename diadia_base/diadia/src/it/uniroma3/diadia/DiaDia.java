@@ -31,16 +31,25 @@ public class DiaDia{
 	private Partita partita;
 	private IO io;
 	
-	public DiaDia(IO console, Labirinto labirinto){
-		this.io = console;
+	public DiaDia(IO io, Labirinto labirinto){
+		this.io = io;
 		this.partita = new Partita(labirinto);
 	}
+	
+	
+	// l'ho aggiunta per passare i test, anche se effettivamente non la uso
+	
+	public DiaDia(IO io) {
+		this.io = io;
+		this.partita = new Partita();
+	}
+	
 	
 
 	public void gioca() {
 		String istruzione; 
 
-		//System.out.println(MESSAGGIO_BENVENUTO);
+
 		io.mostraMessaggio(MESSAGGIO_BENVENUTO);
 
 		do		

@@ -23,6 +23,14 @@ public class Partita {
 		//labirinto.creaStanze();
 		this.finita = false;
 	}
+	
+	public Partita(){
+		this.player = new Giocatore();
+		//labirinto.creaStanze();
+		this.finita = false;
+	}
+	
+	
 
 	/**
 	 * Restituisce vero se e solo se la partita e' stata vinta
