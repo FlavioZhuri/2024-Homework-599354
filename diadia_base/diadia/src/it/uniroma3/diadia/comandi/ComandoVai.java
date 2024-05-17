@@ -18,8 +18,10 @@ public class ComandoVai implements Comando{
 	public void esegui(Partita partita) {
 		Stanza stanzaCorrente = partita.getStanzaCorrente();
 		Stanza prossimaStanza = null;
-		
-			this.io.mostraMessaggio("Dove vuoi andare?");
+			
+			if(this.direzione == null) {
+				this.io.mostraMessaggio("Dove vuoi andare?");
+			}
 
 		prossimaStanza = stanzaCorrente.getStanzaAdiacente(Direzione.fromString(direzione));
 		if (prossimaStanza == null) {

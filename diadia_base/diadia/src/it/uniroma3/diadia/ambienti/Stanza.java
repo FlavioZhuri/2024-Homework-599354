@@ -151,7 +151,7 @@ public class Stanza {
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
 	public boolean removeAttrezzo(Attrezzo attrezzo) {
-		IO console = IOConsole.getInstance();
+		IO console =new IOConsole();
 		
 		if(attrezzo == null)return false;
 		

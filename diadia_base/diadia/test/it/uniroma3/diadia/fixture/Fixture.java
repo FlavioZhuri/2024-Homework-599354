@@ -1,10 +1,9 @@
-package Fixture;
+package it.uniroma3.diadia.fixture;
 
 import java.util.List;
-	
+
 import it.uniroma3.diadia.DiaDia;
 import it.uniroma3.diadia.IOSimulator;
-import it.uniroma3.diadia.ambienti.Direzione;
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.ambienti.Stanza;
@@ -18,10 +17,10 @@ public class Fixture {
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("martello", 3)
 				.addStanzaVincente("Biblioteca")
-				.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
-				.addAdiacenza("Biblioteca", "Atrio", Direzione.SUD)
+				.addAdiacenza("Atrio", "Biblioteca", "nord")
+				.addAdiacenza("Biblioteca", "Atrio", "sud")
 				.getLabirinto();
-		DiaDia gioco = new DiaDia(labirinto);
+		DiaDia gioco = new DiaDia(io, labirinto);
 		gioco.gioca();
 		return io;
 	}
@@ -32,16 +31,16 @@ public class Fixture {
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("martello", 3)
 				.addStanzaVincente("Biblioteca")
-				.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
-				.addAdiacenza("Biblioteca", "Atrio", Direzione.SUD)
+				.addAdiacenza("Atrio", "Biblioteca", "nord")
+				.addAdiacenza("Biblioteca", "Atrio", "sud")
 				.addStanza("Bagno")
-				.addAdiacenza("Bagno", "Atrio", Direzione.SUD)
-				.addAdiacenza("Atrio", "Bagno", Direzione.NORD)
+				.addAdiacenza("Bagno", "Atrio", "sud")
+				.addAdiacenza("Atrio", "Bagno", "nord")
 				.addStanza("Studio")
-				.addAdiacenza("Studio", "Atrio", Direzione.EST)
-				.addAdiacenza("Atrio", "Studio", Direzione.OVEST)
+				.addAdiacenza("Studio", "Atrio", "est")
+				.addAdiacenza("Atrio", "Studio", "ovest")
 				.getLabirinto();
-		DiaDia gioco = new DiaDia(labirinto);
+		DiaDia gioco = new DiaDia(io, labirinto);
 		gioco.gioca();
 		return io;
 	}
@@ -52,7 +51,7 @@ public class Fixture {
 				.addStanzaIniziale("salotto") 
 				.addStanzaVincente("salotto") 
 				.getLabirinto();
-		DiaDia gioco = new DiaDia(monolocale);
+		DiaDia gioco = new DiaDia(io, monolocale);
 		gioco.gioca();
 		return io;
 	}
@@ -64,9 +63,9 @@ public class Fixture {
 				.addStanzaIniziale("salotto")
 				.addStanzaVincente("camera")
 				.addAttrezzo("letto",10) // dove? fa riferimento all’ultima stanza aggiunta
-				.addAdiacenza("salotto", "camera", Direzione.NORD) // camera si trova a nord di salotto
+				.addAdiacenza("salotto", "camera", "nord") // camera si trova a nord di salotto
 				.getLabirinto();
-		DiaDia gioco = new DiaDia(bilocale);
+		DiaDia gioco = new DiaDia(io, bilocale);
 		gioco.gioca();
 		return io;
 	}
@@ -78,10 +77,10 @@ public class Fixture {
 				.addStanza("cucina")
 				.addAttrezzo("pentola",1) // dove? fa riferimento all’ultima stanza aggiunta
 				.addStanzaVincente("camera")
-				.addAdiacenza("salotto", "cucina", Direzione.NORD)
-				.addAdiacenza("cucina", "camera", Direzione.EST)
+				.addAdiacenza("salotto", "cucina", "nord")
+				.addAdiacenza("cucina", "camera", "est")
 				.getLabirinto();
-		DiaDia gioco = new DiaDia(trilocale);
+		DiaDia gioco = new DiaDia(io, trilocale);
 		gioco.gioca();
 		return io;
 	}

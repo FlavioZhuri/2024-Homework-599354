@@ -27,7 +27,7 @@ public class PartitaTest {
 				.addStanzaIniziale("Atrio")
 				.addAttrezzo("martello", 3)
 				.addStanzaVincente("Biblioteca")
-				.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
+				.addAdiacenza("Atrio", "Biblioteca", "nord")
 				.getLabirinto();
 		 partita = new Partita(labirinto);
 		 s = new Stanza("Stanza");

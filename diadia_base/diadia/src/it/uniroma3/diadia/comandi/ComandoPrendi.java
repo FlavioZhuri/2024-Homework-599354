@@ -7,7 +7,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class ComandoPrendi implements Comando {
 
-	private IO io = IOConsole.getInstance();
+	private IO io =new IOConsole();
 	private String nomeAttrezzo;
 	private final static String NOME = "prendi";
 

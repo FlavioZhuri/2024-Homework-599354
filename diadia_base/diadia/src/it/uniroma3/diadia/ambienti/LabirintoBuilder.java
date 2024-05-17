@@ -9,15 +9,15 @@ public class LabirintoBuilder {
 
 	private Labirinto labirinto;
 	private Stanza ultimaStanzaAggiunta;
-	private Map<String, Stanza> stanze;
+	private Map<String, Stanza> nome2stanza;
 
 	public LabirintoBuilder() {
 		this.labirinto = new Labirinto();
-		this.stanze = new HashMap<String, Stanza>();
+		this.nome2stanza = new HashMap<String, Stanza>();
 	}
 	
 	public Map<String, Stanza> getNome2stanza() {
-		return stanze;
+		return nome2stanza;
 	}
 
 	public Labirinto getLabirinto() {
@@ -52,10 +52,10 @@ public class LabirintoBuilder {
 		return this;
 	}
 
-	public LabirintoBuilder addAdiacenza(String stanzaCorrente, String stanzaAdiecente, Direzione direzione) {
-		Stanza c = this.stanze.get(stanzaCorrente);
-		Stanza a = this.stanze.get(stanzaAdiecente);
-		c.impostaStanzaAdiacente(direzione, a);
+	public LabirintoBuilder addAdiacenza(String stanzaCorrente, String stanzaAdiecente, String direzione) {
+		Stanza c = this.nome2stanza.get(stanzaCorrente);
+		Stanza a = this.nome2stanza.get(stanzaAdiecente);
+		c.impostaStanzaAdiacente(Direzione.fromString(direzione), a);
 		return this;
 	}
 	
@@ -71,14 +71,15 @@ public class LabirintoBuilder {
 		return this;
 	}
 	
-	public LabirintoBuilder addStanzaBloccata(String nome, String attrezzoSbloccante, Direzione direzioneBloccata) {
-		Stanza stanza = new StanzaBloccata(nome, direzioneBloccata, attrezzoSbloccante);
+	public LabirintoBuilder addStanzaBloccata(String nome, String attrezzoSbloccante, String direzioneBloccata) {
+		Stanza stanza = new StanzaBloccata(nome, Direzione.fromString(direzioneBloccata) ,attrezzoSbloccante);
 		this.UltimaStanzaAggiuntaEAggiorna(stanza);
 		return this;
 	}
 	
 	public void UltimaStanzaAggiuntaEAggiorna(Stanza stanza) {
 		this.ultimaStanzaAggiunta = stanza;
-		this.stanze.put(stanza.getNome(), stanza);
+		this.nome2stanza.put(stanza.getNome(), stanza);
 	}
 }
+
