@@ -4,7 +4,6 @@ import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
-
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
  * Per giocare crea un'istanza di questa classe e invoca il letodo gioca
@@ -17,7 +16,7 @@ import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
  * @version base
  */
 
-public class DiaDia {
+public class DiaDia{
 
 	public static final String MESSAGGIO_BENVENUTO = ""+
 			"Ti trovi nell'Universita', ma oggi e' diversa dal solito...\n" +
@@ -32,7 +31,7 @@ public class DiaDia {
 	private Partita partita;
 	private IO io;
 	
-	public DiaDia(IO console, Labirinto labirinto) {
+	public DiaDia(IO console, Labirinto labirinto){
 		this.io = console;
 		this.partita = new Partita(labirinto);
 	}
