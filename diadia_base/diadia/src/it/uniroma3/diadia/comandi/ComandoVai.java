@@ -1,60 +1,46 @@
 package it.uniroma3.diadia.comandi;
 
-import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Direzione;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.giocatore.Giocatore;
 
-public class ComandoVai implements Comando{
-
-	private String direzione;
-	private IO io;
+public class ComandoVai extends AbstractComando {
+	
 	private final static String NOME = "vai";
 
-	
-	
+	/**
+	 * esecuzione del comando
+	 */
 	@Override
 	public void esegui(Partita partita) {
 		Stanza stanzaCorrente = partita.getStanzaCorrente();
 		Stanza prossimaStanza = null;
-			
-			if(this.direzione == null) {
-				this.io.mostraMessaggio("Dove vuoi andare?");
+		if (this.getParametro() == null) {
+			this.getIo().mostraMessaggio("Dove vuoi andare? Devi specificare una direzione");
+		}
+		if(this.getParametro()!=null )// && (Direzione.valueOf(this.getParametro()).getClass() != Direzione.class))
+			try {
+			prossimaStanza = stanzaCorrente.getStanzaAdiacente(Direzione.valueOf(this.getParametro()));
+			} catch(IllegalArgumentException e) {
+				this.getIo().mostraMessaggio("Direzione inesistente");
+				return;
 			}
-
-		prossimaStanza = stanzaCorrente.getStanzaAdiacente(Direzione.fromString(direzione));
-		if (prossimaStanza == null) {
-			this.io.mostraMessaggio("Direzione inesistente");
+			
+			if (prossimaStanza == null) {
+			this.getIo().mostraMessaggio("Direzione inesistente");
 			return;
 		}
 
 		partita.setStanzaCorrente(prossimaStanza);
-		this.io.mostraMessaggio(partita.getStanzaCorrente().getNome());
+		this.getIo().mostraMessaggio(partita.getStanzaCorrente().getNome());
 		Giocatore giocatore = partita.getPlayer();
 		giocatore.setCfu(giocatore.getCfu() - 1);
-	}
-
-	@Override
-	public void setParametro(String parametro) {
-		this.direzione = parametro;
-	}
-
-	@Override
-	public String getParametro() {
-		return this.direzione;
-	}
-	
-	@Override
-	public void setIO(IO io) {
-		this.io = io;
 	}
 
 	@Override
 	public String getNome() {
 		return NOME;
 	}
-	
-	
 
 }

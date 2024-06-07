@@ -22,10 +22,10 @@ public class StanzaBloccataTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		sb = new StanzaBloccata("StanzaBloccata", Direzione.OVEST, "piedediporco");
+		sb = new StanzaBloccata("StanzaBloccata", Direzione.ovest, "piedediporco");
 		s1 = new Stanza("StanzaNonBloccata");
 		a = new Attrezzo("piedediporco", 5);
-		sb.impostaStanzaAdiacente(Direzione.OVEST, s1);	
+		sb.impostaStanzaAdiacente(Direzione.ovest, s1);	
 	}
 	
 
@@ -40,7 +40,7 @@ public class StanzaBloccataTest {
 	
 	@Test
 	public void testGetStanzaAdiacenteDirezioneBloccata() {
-		assertEquals(sb, sb.getStanzaAdiacente(Direzione.OVEST));
+		assertEquals(sb, sb.getStanzaAdiacente(Direzione.ovest));
 	}
 	
 	// qui invece vedo che se all'interno della stanza bloccata (SB) 
@@ -51,7 +51,7 @@ public class StanzaBloccataTest {
 	@Test
 	public void testGetStanzaAdiacenteDirezioneSbloccata() {
 		sb.addAttrezzo(a);
-		assertEquals(s1, sb.getStanzaAdiacente(Direzione.OVEST));
+		assertEquals(s1, sb.getStanzaAdiacente(Direzione.ovest));
 		
 	}
 
@@ -69,7 +69,7 @@ public class StanzaBloccataTest {
 	
 	@Test
 	public void testGetDescrizioneDirezioneBloccata() {
-		String e = "Stanza bloccata nella direzione: OVEST"+"\nPrendi il piedediporco e posalo nella stanza";
+		String e = "Stanza bloccata nella direzione: ovest"+"\nPrendi il piedediporco e posalo nella stanza";
 		assertEquals(e, sb.getDescrizione());	
 	}
 

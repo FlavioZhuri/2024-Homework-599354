@@ -37,7 +37,7 @@ public class Partita {
 	 * @return vero se partita vinta
 	 */
 	public boolean vinta() {
-		return lab.getStanzaCorrente() == lab.getStanzaFinale();
+		return lab.getStanzaCorrente() == lab.getStanzaVincente();
 	}
 
 	/**
@@ -78,6 +78,10 @@ public class Partita {
 
 	public Stanza getStanzaCorrente() {
 		return this.getLab().getStanzaCorrente();
+	}
+
+	public boolean giocatoreIsVivo() {
+		return this.player.getCfu()>0;
 	}
 	
 

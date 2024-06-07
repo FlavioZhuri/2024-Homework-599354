@@ -1,59 +1,29 @@
 package it.uniroma3.diadia.comandi;
 
-import it.uniroma3.diadia.IO;
-import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
-public class ComandoPrendi implements Comando {
+public class ComandoPrendi extends AbstractComando {
 
-	private IO io =new IOConsole();
-	private String nomeAttrezzo;
 	private final static String NOME = "prendi";
 
 	
 	@Override
 	public void esegui(Partita partita) {
-		
-		Attrezzo a = partita.getStanzaCorrente().getAttrezzo(nomeAttrezzo);
-		
-		if( a == null) {
-			return;
-		}
-		
-		// questo è un confronto che vede se l'attuale peso della borsa + quello
-		// dell'oggetto da raccogliere sono superiori al peso Max
-		
-		if(partita.getPlayer().getBag().getPeso() + a.getPeso() < partita.getPlayer().getBag().getPesoMax()) {
-			
-			partita.getStanzaCorrente().removeAttrezzo(a);
-			partita.getPlayer().getBag().addAttrezzo(a);
-			
-			io.mostraMessaggio("L'attrezzo è stato inserito nella Borsa");
-			
+		Attrezzo a = partita.getLab().getStanzaCorrente().getAttrezzo(this.getParametro());
+		if(a==null) {
+			this.getIo().mostraMessaggio("Attrezzo non presente nella stanza!");
 		} 
 		else {
-			io.mostraMessaggio("Attrezzo troppo pesante per entrare nella borsa!");
-		}
-	}
-	
-
-	@Override
-	public void setParametro(String parametro) {
-		this.nomeAttrezzo  = parametro;
-
+			if(partita.getPlayer().getBag().getPesoRimanente(a)) {
+				partita.getPlayer().getBag().addAttrezzo(a);
+				partita.getLab().getStanzaCorrente().removeAttrezzo(a);
+			} 
+			else
+				this.getIo().mostraMessaggio("Attrezzo troppo pesante per entrare nella borsa!");
+			}
 	}
 
-	@Override
-	public String getParametro() {
-		return this.nomeAttrezzo;
-	}
-
-	@Override
-	public void setIO(IO io) {
-		this.io = io;
-	}
-	
 	@Override
 	public String getNome() {
 		return NOME;

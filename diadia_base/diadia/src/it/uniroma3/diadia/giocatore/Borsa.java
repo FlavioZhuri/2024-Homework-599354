@@ -128,4 +128,11 @@ public class Borsa {
 	}
 	
 	
+	public boolean getPesoRimanente(Attrezzo a) {
+		if(a != null && this.getPesoMax()-this.getPeso()>=a.getPeso())
+			return true;
+		return false; 
+	}
+	
+	
 }

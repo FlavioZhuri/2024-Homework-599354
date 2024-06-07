@@ -3,61 +3,47 @@ package it.uniroma3.diadia;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
+import java.io.FileNotFoundException;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import it.uniroma3.diadia.ambienti.Direzione;
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.ambienti.Stanza;
 
 public class PartitaTest {
-	
+
 	Labirinto labirinto;
-	
-	Partita partita;
-	Stanza stanza1 = new Stanza("Stanza1");
+	Partita p;
 	Stanza s;
-	Stanza stanza2 = new Stanza("Stanza2"); 
-	
-	
+
 	@Before
-	public void setUp() {
-		 labirinto = new LabirintoBuilder()
-				.addStanzaIniziale("Atrio")
-				.addAttrezzo("martello", 3)
-				.addStanzaVincente("Biblioteca")
-				.addAdiacenza("Atrio", "Biblioteca", "nord")
-				.getLabirinto();
-		 partita = new Partita(labirinto);
+	public void setUp() throws FileNotFoundException, FormatoFileNonValidoException {
+		 labirinto = Labirinto.newBuilder("labirinto2.txt").getLabirinto();
+//				.addStanzaIniziale("Atrio")
+//				.addAttrezzo("martello", 3)
+//				.addStanzaVincente("Biblioteca")
+//				.addAdiacenza("Atrio", "Biblioteca", "nord")
+//				.getLabirinto();
+		 p = new Partita(labirinto);
 		 s = new Stanza("Stanza");
 	}
 	
-	
-	
 	@Test
-	public void testGetStanzaFinale() {
-		assertEquals("Biblioteca", partita.getLab().getStanzaFinale().getNome());
+	public void testGetStanzaVincente() {
+		assertEquals("Biblioteca", p.getLab().getStanzaVincente().getNome());
 	}
-	
-	@Test
-	public void testIsFinita() {
-		assertFalse(partita.isFinita());
-	}	
-	
 
 	@Test
 	public void testSetStanzaCorrente() {
-		partita.getLab().setStanzaCorrente(s);
-		assertEquals(s, partita.getLab().getStanzaCorrente());
+		p.getLab().setStanzaCorrente(s);
+		assertEquals(s, p.getLab().getStanzaCorrente());
 	}
-	
-	
-	
+
 	@Test
-	public void testImpostaStanzaAdiacente() {
-		stanza1.impostaStanzaAdiacente(Direzione.SUD, stanza2);
-		assertEquals(stanza2, stanza1.getStanzaAdiacente(Direzione.SUD));
+	public void testIsFinita() {
+		
+		assertFalse(p.isFinita());
 	}
 	
 }
